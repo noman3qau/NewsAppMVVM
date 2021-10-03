@@ -40,9 +40,6 @@ class NewsViewModel(app: Application, val newsRepository: NewsRepository) : Andr
      */
     fun getBreakingNews(countryCode: String) = viewModelScope.launch {
         safeBreakingNewsCall(countryCode)
-        breakingNews.postValue(Resource.Loading())
-        val response = newsRepository.getBreakingNews(countryCode, breakingNewsPage)
-        breakingNews.postValue(handleBreakingNewsResponse(response))
     }
 
     /**
@@ -50,9 +47,6 @@ class NewsViewModel(app: Application, val newsRepository: NewsRepository) : Andr
      */
     fun getSearchNews(searchQuery: String) = viewModelScope.launch {
         safeSearchNewsCall(searchQuery)
-        searchNews.postValue(Resource.Loading())
-        val response = newsRepository.searchForNews(searchQuery, searchNewsPage)
-        searchNews.postValue(handleSeachNewsResponse(response))
     }
 
     /**
